@@ -21,14 +21,14 @@ jobs:
         with:
           java-version: '17'
 
-      - name: Build with Gradle
-        run: gradle clean build
+      - name: Build with Maven
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/build/libs/*.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'sharad-spring-app'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B1BCBBA2ECB14D70AE9D8B0A717F5575 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AE6E92C185A949AB82E0AF8111C7E7C8 }}
           package: '*.jar'
