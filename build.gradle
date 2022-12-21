@@ -20,3 +20,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	enabled = true
+	archiveClassifier = '' //use empty string
+}
